@@ -41,8 +41,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Tip Calculator](https://www.frontendmentor.io/solutions/responsive-huddle-landing-page-using-css-grid-and-flex-OLOU4G324S)
-- Live Site URL: [Tip Calculator](https://source-web.github.io/huddle-landing-page/)
+- Solution URL: [Tip Calculator](https://www.frontendmentor.io/solutions/responsive-tip-calculator-designed-with-pure-html-css-and-javascript-eC8NdLaDFD)
+- Live Site URL: [Tip Calculator](https://source-web.github.io/tip-calculator/)
 
 ## My process
 
