@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+</head>
+<body>
+
+  <header>
+    <h1>
+      <img src="./images/logo.svg" alt="logo">
+    </h1>
+  </header>
+  
+  <main>
+    <div id="container">
+
+
+    <section class="fromInputs">
+      <form method="get">
+        <label for="bill">Bill</label>
+        <input type="number" placeholder="0" min="0" class="bill_form chrome" id="bill">
+      </form>
+      <div>
+        <label for="select_tip">Select Tip %</label>
+        <div class="tip">
+        <button class="btn_tip" data-num="5">5%</button>
+        <button class="btn_tip" data-num="10">10%</button>
+        <button class="btn_tip" data-num="15">15%</button>
+        <button class="btn_tip" data-num="25">25%</button>
+        <button class="btn_tip" data-num="50">50%</button>
+        <input type="number" placeholder="Custom" min="0" class="btn chrome" id="tip">
+        </div>
+      </div>
+      <form method="get">
+        <div class="pcontent">
+          <label for="number_of_people">Number of People</label>
+          <label for="error" id="error_msg">Can&apos;t be zero</label>
+        </div>
+        <input type="number" placeholder="0" min="0" class="num_of_people chrome" id="numOfPeople">
+      </form>
+    </section>
+
+
+    <section class="output">
+      <div class="tip_amount">
+        <div class="amount">
+          <p>Tip Amount</p>
+          <small>/ person</small>
+        </div>
+        <div class="amount_display">
+          <span>$</span>
+        <label for="amount" id="screen_amount">0.00</label>
+        </div>
+      </div>
+      <div class="total">
+        <div class="amount">
+          <p>Total</p>
+          <small>/ person</small>
+        </div>
+        <div class="amount_display">
+          <span>$</span>
+          <label for="total" id="screen_total">0.00</label>
+        </div>
+      </div>
+      <button class="reset" id="reset_btn" disabled>Reset</button>
+    </section>
+
+
+    </div>
+  </main>
+
+  <script type="text/javascript" src="calculator.js"></script>
+</body>
+</html>
