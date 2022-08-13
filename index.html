@@ -27,11 +27,11 @@
 
     <section class="fromInputs">
       <form method="get">
-        <label for="bill">Bill</label>
+        <h2><label for="bill">Bill</label></h2>
         <input type="number" placeholder="0" min="0" class="bill_form chrome" id="bill">
       </form>
       <div>
-        <label for="select_tip">Select Tip %</label>
+        <label class="select_tip">Select Tip %</label>
         <div class="tip">
         <button class="btn_tip" data-num="5">5%</button>
         <button class="btn_tip" data-num="10">10%</button>
@@ -43,8 +43,8 @@
       </div>
       <form method="get">
         <div class="pcontent">
-          <label for="number_of_people">Number of People</label>
-          <label for="error" id="error_msg">Can&apos;t be zero</label>
+          <label>Number of People</label>
+          <label id="error_msg">Can&apos;t be zero</label>
         </div>
         <input type="number" placeholder="0" min="0" class="num_of_people chrome" id="numOfPeople">
       </form>
@@ -54,22 +54,22 @@
     <section class="output">
       <div class="tip_amount">
         <div class="amount">
-          <p>Tip Amount</p>
+          <h2>Tip Amount</h2>
           <small>/ person</small>
         </div>
         <div class="amount_display">
           <span>$</span>
-        <label for="amount" id="screen_amount">0.00</label>
+        <label id="screen_amount">0.00</label>
         </div>
       </div>
       <div class="total">
         <div class="amount">
-          <p>Total</p>
+          <h2>Total</h2>
           <small>/ person</small>
         </div>
         <div class="amount_display">
           <span>$</span>
-          <label for="total" id="screen_total">0.00</label>
+          <label id="screen_total">0.00</label>
         </div>
       </div>
       <button class="reset" id="reset_btn" disabled>Reset</button>
@@ -79,6 +79,6 @@
     </div>
   </main>
 
-  <script type="text/javascript" src="calculator.js"></script>
+  <script src="calculator.js"></script>
 </body>
 </html>

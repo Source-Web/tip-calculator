@@ -21,7 +21,7 @@ body, html {
     box-sizing: border-box;
 }
 
-header, h1, main, section, form, div, p, img {
+header, h1, h2, main, section, form, div, p, img {
     margin: 0;
     padding: 0;
 }
@@ -131,7 +131,7 @@ label[for="bill"] {
     margin-bottom: 40px;
 }
 
-label[for="select_tip"] {
+.select_tip {
     display: block;
     margin-bottom: 16px;
     font-size: 16px;
@@ -197,7 +197,7 @@ button:hover {
     margin-bottom: 28px;
 }
 
-.tip_amount p, .total p {
+.tip_amount h2, .total h2 {
     font-size: 16px;
     margin-top: 2px;
     color: var(--Very-light-grayish-cyan);
@@ -315,7 +315,7 @@ button[disabled]:hover {
         margin-bottom: 19px;
     }
 
-    .tip_amount p, .total p {
+    .tip_amount h2, .total h2 {
         margin-top: 1px;
     }
 
