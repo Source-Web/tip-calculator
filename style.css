@@ -93,6 +93,15 @@ input:focus {
     border: 2px solid var(--Light-cyan);
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+[type="number"] {
+    -moz-appearance: textfield;
+}
+
 label[for="bill"] {
     margin-top: 13px;
 }
@@ -167,21 +176,9 @@ button:hover {
 .btn {
     background: var(--Very-light-grayish-cyan);
     color: var(--Very-dark-cyan);
-    text-align: center;
+    text-align: right;
     font-size: 24px;
-}
-
-/*.btn and input style for chrome*/
-
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) and (min-width: 1024px){
-    .btn:not(*:root), .chrome{
-        padding-right: 0;
-        text-align: right;
-    }
-
-    .bill_form:not(*:root), .chrome, .num_of_people:not(*:root), .chrome{
-        padding: 0;
-    }
+    padding-right: 15px;
 }
 
 .output {

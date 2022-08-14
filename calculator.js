@@ -5,10 +5,10 @@
     let tipInput = document.getElementById("tip");
     let numOfPeople = document.getElementById("numOfPeople");
     let errorMsg = document.getElementById("error_msg");
+    let amountDisplay = document.getElementsByClassName("amount_display");
     let amountScreen = document.getElementById("screen_amount");
     let totalScreen = document.getElementById("screen_total");
     let resetBtn = document.getElementById("reset_btn");
-    let container = document.getElementById("container");
     let billInputValue = 0;
     let numOfPeopleValue = 0;
     let tipValue = 0;
@@ -25,9 +25,44 @@
 
     resetBtn.addEventListener('click', resetAll);
 
-    /*if(billInput.value.length >= 5){
-        container.style.minWidth = "920px";
-    }*/
+    //Check number of character entered in bill input field
+    billInput.onkeydown = function limit(){
+        let maxChars = 10;
+        if(billInput.value.length > maxChars){
+            billInput.value = billInput.value.substr(0, maxChars);
+        }
+    }
+
+    function checkLength(){
+        if(window.innerWidth > 375){
+            if(billInputValue > 9999 && tipValue != 0 && numOfPeopleValue != 0){
+                for(i = 0; i<= amountDisplay.length; i++){
+                    amountDisplay[i].style.fontSize = "calc(" + (4/billInput.value.length)*48 +"px" + ")";
+                }
+            }
+
+            else{
+                for(i = 0; i<= amountDisplay.length; i++){
+                    amountDisplay[i].style.fontSize = "46px";
+                }
+            }
+        }
+    
+        else{
+            if(billInputValue > 99999 && tipValue != 0 && numOfPeopleValue != 0){
+                for(i = 0; i<= amountDisplay.length; i++){
+                    amountDisplay[i].style.fontSize = "calc(" + (4/billInput.value.length)*36 +"px" + ")";
+                }
+            }
+
+            else{
+                for(i = 0; i<= amountDisplay.length; i++){
+                    amountDisplay[i].style.fontSize = "32px";
+                }
+            }
+        }
+}
+
 
     function setBillInputValue(){
         billInputValue = parseFloat(billInput.value);
@@ -41,6 +76,8 @@
             calculateTip();
         }
         makeActive();
+        checkLength();
+        limit();
         //console.log(billInputValue);
     }
 
@@ -55,6 +92,7 @@
         tipInput.value = '';
         calculateTip();
         makeActive();
+        checkLength();
         //console.log(tipValue);
     }
 
@@ -73,6 +111,7 @@
             calculateTip();
         }
         makeActive();
+        checkLength();
         //console.log(tipValue);
     }
 
@@ -94,6 +133,7 @@
             calculateTip();
         }
         makeActive();
+        checkLength();
         //alert(numOfPeopleValue);
     }
 
@@ -110,7 +150,6 @@
             amountScreen.innerHTML = amount.toFixed(2);
             totalScreen.innerHTML = total.toFixed(2);
         }
-        makeActive();
         //console.log(amount);
         //console.log(total);
     }
@@ -141,7 +180,19 @@
             });
 
         resetBtn.disabled = true;
+
+        if(window.innerWidth > 420){
+            for(i = 0; i<= amountDisplay.length; i++){
+                amountDisplay[i].style.fontSize = "46px";
+            }
+        }
+
+        else{
+            for(i = 0; i<= amountDisplay.length; i++){
+                amountDisplay[i].style.fontSize = "32px";
+            }
+        }
+        
     }
-    
 
 })();
