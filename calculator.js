@@ -15,8 +15,8 @@
 
     billInput.addEventListener('input', setBillInputValue);
 
-    selectTip.forEach(btn_tip => {
-        btn_tip.addEventListener('click', handleClick);
+    selectTip.forEach(button => {
+        button.addEventListener('click', handleClick);
     });
 
     tipInput.addEventListener('input', setTipInputValue);
