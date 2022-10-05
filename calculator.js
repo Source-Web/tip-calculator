@@ -1,16 +1,17 @@
-(function(){
-
+(function () {
+    let allInput = document.querySelectorAll('input[type="number"]');
     let billInput = document.getElementById("bill");
     let selectTip = document.querySelectorAll(".btn_tip");
     let tipInput = document.getElementById("tip");
     let numOfPeople = document.getElementById("numOfPeople");
     let errorMsg = document.getElementById("error_msg");
-    let amountDisplay = document.getElementsByClassName("amount_display");
+    let screen = document.querySelectorAll('.screen');
     let amountScreen = document.getElementById("screen_amount");
     let totalScreen = document.getElementById("screen_total");
     let resetBtn = document.getElementById("reset_btn");
     let billInputValue = 0;
     let numOfPeopleValue = 0;
+    let tipInputValue = 0;
     let tipValue = 0;
 
     billInput.addEventListener('input', setBillInputValue);
@@ -25,66 +26,80 @@
 
     resetBtn.addEventListener('click', resetAll);
 
+    let invalid = /[-_!"`',:;<>={}@#%&\$\(\)\*\+\/\\\?\[\]\^|]+/;
+    let invalid2 = /[-._!"`',:;<>={}@#%&\$\(\)\*\+\/\\\?\[\]\^|]+/;
+
+    allInput.forEach(input => {
+        input.addEventListener('keydown', event => {
+            if (invalid.test(event.key)) {
+                event.preventDefault();
+            }
+        })
+    });
+
+    numOfPeople.addEventListener('keydown', event => {
+        if (invalid2.test(event.key)) {
+            event.preventDefault();
+        }
+    });
+
     //Check number of character entered in bill input field
-    billInput.onkeydown = function limit(){
+    billInput.onkeydown = function limit() {
         let maxChars = 10;
-        if(billInput.value.length > maxChars){
+        if (billInput.value.length > maxChars) {
             billInput.value = billInput.value.substr(0, maxChars);
         }
     }
 
-    function checkLength(){
-        if(window.innerWidth > 375){
-            if(billInputValue > 9999 && tipValue != 0 && numOfPeopleValue != 0){
-                for(i = 0; i<= amountDisplay.length; i++){
-                    amountDisplay[i].style.fontSize = "calc(" + (4/billInput.value.length)*48 +"px" + ")";
+    function checkLength() {
+
+        screen.forEach(display => {
+            let charLength = amountScreen.innerText.length;
+
+            if (window.innerWidth > 375) {
+                if (charLength > 7 && tipValue != 0 && numOfPeopleValue != 0) {
+                    display.style.fontSize = "calc(" + (7 / charLength) * 48 + "px" + ")";
                 }
+
+                else {
+                    display.style.fontSize = "46px";
+                }
+
             }
 
-            else{
-                for(i = 0; i<= amountDisplay.length; i++){
-                    amountDisplay[i].style.fontSize = "46px";
+            else {
+                if (charLength > 6 && tipValue != 0 && numOfPeopleValue != 0) {
+                    display.style.fontSize = "calc(" + (6 / charLength) * 36 + "px" + ")";
+                }
+
+                else {
+                    display.style.fontSize = "32px";
                 }
             }
-        }
-    
-        else{
-            if(billInputValue > 99999 && tipValue != 0 && numOfPeopleValue != 0){
-                for(i = 0; i<= amountDisplay.length; i++){
-                    amountDisplay[i].style.fontSize = "calc(" + (4/billInput.value.length)*36 +"px" + ")";
-                }
-            }
-
-            else{
-                for(i = 0; i<= amountDisplay.length; i++){
-                    amountDisplay[i].style.fontSize = "32px";
-                }
-            }
-        }
-}
+        });
+    }
 
 
-    function setBillInputValue(){
+    function setBillInputValue() {
         billInputValue = parseFloat(billInput.value);
 
-        if(isNaN(billInputValue) == true){
+        if (isNaN(billInputValue) == true) {
             amountScreen.innerHTML = "0.00";
             totalScreen.innerHTML = "0.00";
         }
 
-        else{
+        else {
             calculateTip();
         }
         makeActive();
         checkLength();
-        limit();
         //console.log(billInputValue);
     }
 
-    function handleClick(event){
+    function handleClick(event) {
         selectTip.forEach(button => {
             button.classList.remove('btn_active');
-            tipValue = event.target.dataset.num/100;
+            tipValue = event.target.dataset.num / 100;
         });
 
         this.classList.add('btn_active');
@@ -96,18 +111,18 @@
         //console.log(tipValue);
     }
 
-    function setTipInputValue(){
+    function setTipInputValue() {
         selectTip.forEach(button => {
             button.classList.remove('btn_active');
-            });
+        });
         tipInputValue = parseFloat(tipInput.value);
-        tipValue = tipInputValue/100;
-        if(isNaN(tipValue) == true){
+        tipValue = tipInputValue / 100;
+        if (isNaN(tipValue) == true) {
             amountScreen.innerHTML = "0.00";
             totalScreen.innerHTML = "0.00";
         }
 
-        else{
+        else {
             calculateTip();
         }
         makeActive();
@@ -115,14 +130,14 @@
         //console.log(tipValue);
     }
 
-    function setNumOfPeopleValue(){
+    function setNumOfPeopleValue() {
         numOfPeopleValue = parseFloat(numOfPeople.value);
-        if(numOfPeopleValue == 0) {
+        if (numOfPeopleValue == 0) {
             errorMsg.style.display = 'block';
             numOfPeople.style.borderColor = 'red';
         }
 
-        else if(isNaN(numOfPeopleValue) == true){
+        else if (isNaN(numOfPeopleValue) == true) {
             amountScreen.innerHTML = "0.00";
             totalScreen.innerHTML = "0.00";
         }
@@ -137,33 +152,34 @@
         //alert(numOfPeopleValue);
     }
 
-    function calculateTip(){
-        let amount = (tipValue * billInputValue)/ numOfPeopleValue;
-        let total = amount + (billInputValue/numOfPeopleValue);
+    function calculateTip() {
+        let amount = (tipValue * billInputValue) / numOfPeopleValue;
+        let total = amount + (billInputValue / numOfPeopleValue);
 
-        if(isFinite(amount) == false || isFinite(total) == false){
+        if (isFinite(amount) == false || isFinite(total) == false) {
             amountScreen.innerHTML = "0.00";
             totalScreen.innerHTML = "0.00";
         }
 
-        else{
+        else {
             amountScreen.innerHTML = amount.toFixed(2);
             totalScreen.innerHTML = total.toFixed(2);
         }
+
         //console.log(amount);
         //console.log(total);
     }
 
-    function makeActive(){
-        if(billInputValue != 0 && tipValue != 0 && numOfPeopleValue != 0){
+    function makeActive() {
+        if (billInputValue != 0 && tipValue != 0 && numOfPeopleValue != 0) {
             resetBtn.disabled = false;
-            
+
             //alert(numOfPeopleValue);
         }
     }
 
 
-    function resetAll(){
+    function resetAll() {
         billInput.value = "";
         selectTip.value = "";
         tipInput.value = "";
@@ -177,22 +193,19 @@
 
         selectTip.forEach(button => {
             button.classList.remove('btn_active');
-            });
+        });
 
         resetBtn.disabled = true;
-
-        if(window.innerWidth > 420){
-            for(i = 0; i<= amountDisplay.length; i++){
-                amountDisplay[i].style.fontSize = "46px";
+        screen.forEach(display => {
+            if (window.innerWidth > 375) {
+                display.style.fontSize = "46px";
             }
-        }
 
-        else{
-            for(i = 0; i<= amountDisplay.length; i++){
-                amountDisplay[i].style.fontSize = "32px";
+            else {
+                display.style.fontSize = "32px";
             }
-        }
-        
+        });
+
     }
 
 })();
